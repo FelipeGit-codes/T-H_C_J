@@ -1,0 +1,291 @@
+:root {
+    --verde-neon: #00ff66;
+    --verde-medio: #10b981;
+    --verde-escuro: #047857;
+    --preto-abs: #000000;
+    --preto-hud: #0a0a0a;
+    --cinza-profundo: #121212;
+    --cinza-painel: #1e1e1e;
+    --cinza-borda: #333333;
+    --cinza-texto: #888888;
+    --branco: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace, sans-serif;
+}
+
+body {
+    background-color: var(--preto-abs);
+    color: var(--branco);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background Estilizado com Grid */
+body::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background-image: 
+        linear-gradient(rgba(0, 255, 102, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 102, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: 1;
+}
+
+/* Camada de Rachadura Temporal */
+.crack-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.crack-overlay svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 6px var(--verde-neon));
+}
+
+.vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.9) 100%);
+}
+
+body.cracked .crack-overlay {
+    opacity: 1;
+}
+
+/* Animação de Tremor ao Ativar o Game */
+body.shake .hud-container {
+    animation: screenShake 0.4s ease-in-out;
+}
+
+@keyframes screenShake {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    20% { transform: translate(-8px, 5px) rotate(-1deg); }
+    40% { transform: translate(8px, -5px) rotate(1deg); }
+    60% { transform: translate(-5px, -2px) rotate(0deg); }
+    80% { transform: translate(4px, 3px) rotate(0.5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* HUD Principal */
+.hud-container {
+    background: rgba(10, 10, 10, 0.92);
+    border: 1px solid var(--cinza-borda);
+    border-top: 3px solid var(--verde-neon);
+    border-radius: 12px;
+    padding: 24px;
+    width: 440px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.02);
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+.hud-header {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.65rem;
+    color: var(--cinza-texto);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.pulse-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--verde-neon);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--verde-neon);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+.hud-header h1 {
+    font-size: 1.1rem;
+    color: var(--branco);
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+/* Display do Relógio Digital */
+.clock-display {
+    background-color: var(--preto-abs);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.9);
+    margin-bottom: 16px;
+}
+
+.time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-block span {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: var(--verde-neon);
+    text-shadow: 0 0 12px rgba(0, 255, 102, 0.6);
+}
+
+.time-block label {
+    font-size: 0.55rem;
+    color: var(--cinza-texto);
+    margin-top: -4px;
+}
+
+.colon {
+    font-size: 1.8rem;
+    color: var(--cinza-texto);
+    margin-bottom: 12px;
+}
+
+/* Viewport do Canvas */
+.viewport-card {
+    background-color: var(--preto-abs);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hud-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(30, 30, 30, 0.85);
+    border: 1px solid var(--cinza-borda);
+    color: var(--verde-neon);
+    font-size: 0.65rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    z-index: 5;
+    letter-spacing: 1px;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 240px;
+}
+
+.timeline-bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--cinza-profundo);
+}
+
+.timeline-bar .progress {
+    width: 0%;
+    height: 100%;
+    background-color: var(--verde-neon);
+    box-shadow: 0 0 6px var(--verde-neon);
+    transition: width 0.1s linear;
+}
+
+/* Controles de Botões */
+.controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn {
+    position: relative;
+    padding: 12px;
+    border: 1px solid var(--verde-neon);
+    background-color: transparent;
+    color: var(--verde-neon);
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+}
+
+.btn:hover {
+    background-color: var(--verde-neon);
+    color: var(--preto-abs);
+    box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
+}
+
+.btn.active-mode {
+    background-color: var(--cinza-painel);
+    color: var(--branco);
+    border-color: var(--cinza-borda);
+}
+
+.temporal-controls {
+    display: flex;
+    gap: 6px;
+}
+
+.temporal-controls.hidden {
+    display: none;
+}
+
+.btn-ctrl {
+    flex: 1;
+    background-color: var(--cinza-painel);
+    color: var(--cinza-texto);
+    border: 1px solid var(--cinza-borda);
+    padding: 10px 0;
+    font-size: 0.7rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-ctrl:hover {
+    color: var(--branco);
+    border-color: var(--verde-neon);
+}
+
+.btn-ctrl.active {
+    background-color: var(--verde-neon);
+    color: var(--preto-abs);
+    border-color: var(--verde-neon);
+    box-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
+}

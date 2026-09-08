@@ -1,0 +1,50 @@
+@font-face {
+    font-family: relogio;
+    src: url(/fonts/DS-DIGI.TTF);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+body{
+    height: 100vh;
+    background: url(../images/mugetsu.png);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+.central{
+    background: rgba(253, 252, 252, 0.007);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: fit-content;
+    backdrop-filter: blur(0.5px)
+}
+
+.central div{
+    background-color: rgb(0, 0, 0);
+    color: darkred;
+    padding: 20px;
+    border-radius: 50%;
+    font-family: relogio;
+    width: 115;
+    height: 115;
+}
+
+.central span{
+    font-size: 100px;
+}

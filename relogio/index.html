@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relógio Temporal & Manipulação Biológica</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Camada do Efeito de Rachadura de Tela (SVG + Glass Shatter) -->
+    <div id="crackOverlay" class="crack-overlay">
+        <svg id="crackSvg" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+            <!-- As rachaduras radiais e teias de aranha são geradas via JS para variabilidade -->
+        </svg>
+        <div class="vignette"></div>
+        <div class="glass-shards"></div>
+    </div>
+
+    <!-- Interface HUD Temporal -->
+    <main class="hud-container" id="hudContainer">
+        <header class="hud-header">
+            <div class="status-indicator">
+                <span class="pulse-dot"></span>
+                <span id="systemStatus">SISTEMA EM SINCRO (UTC-3)</span>
+            </div>
+            <h1>HORÁRIO DIGITAL</h1>
+        </header>
+
+        <!-- Display Digital Relógio -->
+        <section class="clock-display">
+            <div class="time-block"><span id="hours">00</span><label>HORAS</label></div>
+            <div class="colon">:</div>
+            <div class="time-block"><span id="minutes">00</span><label>MINUTOS</label></div>
+            <div class="colon">:</div>
+            <div class="time-block"><span id="seconds">00</span><label>SEGUNDOS</label></div>
+        </section>
+
+        <!-- Viewport do Canvas da Árvore -->
+        <section class="viewport-card">
+            <div class="hud-badge" id="treeStatus">SEMENTE DO TEMPO (0s)</div>
+            <canvas id="treeCanvas" width="400" height="320"></canvas>
+            <div class="timeline-bar"><div id="timelineProgress" class="progress"></div></div>
+        </section>
+
+        <!-- Painel de Controle Temporal -->
+        <section class="controls-panel">
+            <button class="btn btn-activation" id="toggleGameBtn">
+                <span class="btn-glow"></span>
+                <span class="btn-text">ATIVAR FENÔMENO TEMPORAL</span>
+            </button>
+
+            <div class="temporal-controls hidden" id="timeControls">
+                <button class="btn-ctrl" id="btnRewind">◄◄ VOLTAR</button>
+                <button class="btn-ctrl active" id="btnNormal">► NORMAL</button>
+                <button class="btn-ctrl" id="btnPause">❚❚ PARAR</button>
+                <button class="btn-ctrl" id="btnForward">►► AVANÇAR</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
