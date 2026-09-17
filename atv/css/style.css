@@ -1,0 +1,57 @@
+body{
+    height: 100vh;
+    background-image: url(../images/quadro.avif);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #ffd000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.central{
+    background: rgba(2, 2, 2, 0);
+    width: 40%;
+    display: flex;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+}
+
+.central div{
+    background-size: cover;
+    border-radius: 20px;
+}
+
+
+.central input{
+    width: 50%;
+    height: 20px;
+    border:  2px solid rgb(0, 0, 0);
+}
+
+.central button{
+    font-size: 25px;
+    font-weight: bolder;
+    color: rgb(0, 0, 0);
+    background: rgb(252, 252, 252);
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover{
+        background: rgb(0, 0, 0);
+        color: rgb(255, 238, 0);
+        transition: 0.1s;
+        transform: scale(1.1);
+    }
+
+}
+
+.central span{
+    font-size: 20px;
+    color: rgba(247, 210, 0, 0.938);
+}
