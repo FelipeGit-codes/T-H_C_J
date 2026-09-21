@@ -1,26 +1,19 @@
-const uni1 = document.querySelector('#uni1')
-const uni2 = document.querySelector('#uni2')
-const uni3 = document.querySelector('#uni3')
+const dis = document.querySelector('#dis')
+const con = document.querySelector('#con')
+const pre = document.querySelector('#pre')
 const botao = document.querySelector('#botao')
 const resultado1 = document.querySelector('#resultado1')
 const resultado2 = document.querySelector('#resultado2')
 const resultado3 = document.querySelector('#resultado3')
 
-botao.addEventListener('click', nota)
+botao.addEventListener('click', formula)
 
-function nota(){
-    n1 = Number(uni1.value)
-    n2 = Number(uni2.value)
-    n3 = Number(uni3.value)
-    calculo = (n1+n2+n3) / 3
+function formula(){
+    n1 = Number(dis.value)
+    n2 = Number(con.value)
+    n3 = Number(pre.value)
+    formula = (n1/n2) * n3
 
-    resultado1.textContent = `Sua média é ${calculo.toFixed(2)}`
+resultado1.textContent = `O valor total da viagem é R$ ${formula.toFixed(2)}`
 
-
-    if(calculo>=5){
-    resultado2.textContent = `Você está aprovado!`
-
-    }else if(calculo<=4){
-    resultado2.textContent = `Você está reprovado!`
-
-}}
+}

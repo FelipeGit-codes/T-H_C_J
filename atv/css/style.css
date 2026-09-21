@@ -1,10 +1,10 @@
 body{
     height: 100vh;
-    background-image: url(../images/quadro.avif);
+    background-image: url(../images/estrada.png);
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #ffd000;
+    background-color: #0f0f0f;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,7 +39,7 @@ body{
     font-size: 25px;
     font-weight: bolder;
     color: rgb(0, 0, 0);
-    background: rgb(252, 252, 252);
+    background: rgb(245, 243, 243);
     border-radius: 5px;
     cursor: pointer;
     &:hover{
